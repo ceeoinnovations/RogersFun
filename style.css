@@ -56,9 +56,9 @@ section .title{
 
 .intro{
     /* height: 40vh; */
-    background-color:#f0f1f3;
-    /* rgb(51, 51, 51); fbf9f6*/
-    color: #fbf9f6;
+    background-color:#3F7BE0;  
+    /* rgb(51, 51, 51); fbf9f6. - it was #f0f1f3 */
+    color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
