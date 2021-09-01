@@ -58,7 +58,7 @@ section .title{
     /* height: 40vh; */
     background-color:#f0f1f3;
     /* rgb(51, 51, 51); fbf9f6*/
-    color: #000;
+    color: #fbf9f6;
     display: flex;
     flex-direction: column;
     align-items: center;
