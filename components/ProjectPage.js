@@ -3,18 +3,17 @@ import Navbar from './Navbar.js';
 import Footer from './Footer.js';
 const opacity = 0.6;
 
+// create project detail page
 export default function ProjectPage(project, about){
-
     document.querySelector('.container').innerHTML = `
         ${Navbar('project')}
         ${ProjectDetail(project, about)}
     `
-    // SetGallery();
     SetLightgallery(GetMediaArr(project.video, project.images));
 }
 
+// return HTML for project content section
 export function ProjectDetail(d, about){
-    
     return `
     <section id="content" class="project-intro">
         <div class="content-wrapper">
@@ -38,15 +37,134 @@ export function ProjectDetail(d, about){
                     <div class="project-tags" style="color: #a7a6a6;">
                         By ${d.authors}
                     </div>
-
                 </div>
             </div>
         </div>
-
     </section>
     `
 }
 
+
+
+// return HTML to add custom button
+export function CustomButton(url, urlLabel){
+    if (url==="") {
+        return '';
+    }else {
+        return `
+        <a href="${url}" target="_blank">
+            <button class="button" style="margin-top: 30px; margin-bottom: 50px;">${urlLabel}</button>
+        </a>
+        `;
+    }
+}
+
+// return HTML to add download button
+export function FilesButton(files){
+    if (files==="") {
+        return '';
+    }else {
+        return `
+        <a href="${files}" target="_blank">
+            <button class="button" style="margin-top: 30px; margin-bottom: 50px;">Download Files</button>
+        </a>
+        `;
+    }
+}
+
+// return HTML to add code section
+export function CodeSnippet(code){
+    if (code==="") {
+        return '';
+    }else {
+        return `
+        <h4>Code</h4>
+            <pre><code class="python">${code}</code></pre>
+        `;
+    }
+}
+
+// for custom gallery - unused
+export function Gallery(video, images){
+    return `
+    <div class="gallery">
+        <div class="maxi">
+        ${ShowMaxi(video, images)}
+        </div>
+        <div class="mini">
+        ${GetEmbedVideo(video)}
+        ${ImageItems(images)}
+        </div>
+    </div>
+    `
+}
+
+// add lightgallery
+export function Lightgallery() {
+    return `
+        <div id="inline-gallery-container" class="inline-gallery-container"></div>
+    `
+}
+
+// set up lightgallery
+export function SetLightgallery(mediaArr) {
+    const $lgContainer = document.getElementById("inline-gallery-container");
+    const inlineGallery = lightGallery($lgContainer, {
+        container: $lgContainer,
+        dynamic: true,
+        // Turn off hash plugin in case if you are using it
+        // as we don't want to change the url on slide change
+        hash: false,
+        // Do not allow users to close the gallery
+        closable: false,
+        // Add maximize icon to enlarge the gallery
+        showMaximizeIcon: false,
+        // Append caption inside the slide item
+        // to apply some animation for the captions (Optional)
+        // appendSubHtmlTo: ".lg-item",
+        // Delay slide transition to complete captions animations
+        // before navigating to different slides (Optional)
+        // You can find caption animation demo on the captions demo page
+        slideDelay: 200,
+        plugins: [lgZoom, lgThumbnail, lgVideo],
+        dynamicEl: mediaArr,
+        iframe: true,
+        // Completely optional
+        thumbWidth: 60,
+        thumbHeight: "60px",
+        // thumbMargin: 4
+    });
+
+    setTimeout(() => {
+        inlineGallery.openGallery();
+    }, 200);
+}
+
+// add images
+export function ImageItems(images){
+    let arr = GetImageArr(images);
+
+    return arr.map(d=>`
+        <img src="${GetImageURL(d)}">
+        `).join('');
+}
+
+// create a video thumbnail image - unused
+export function capture(video, scaleFactor) {
+	if(scaleFactor == null){
+		scaleFactor = 1;
+	}
+	var w = video.videoWidth * scaleFactor;
+	var h = video.videoHeight * scaleFactor;
+	var canvas = document.createElement('canvas');
+		canvas.width  = w;
+	    canvas.height = h;
+	var ctx = canvas.getContext('2d');
+		ctx.drawImage(video, 0, 0, w, h);
+    return canvas;
+}
+
+// for custom gallery - unused
 export function GetMediaArr(videoString, imageString){
     let mediaString;
     let mediaArr = [];
@@ -81,84 +199,13 @@ export function GetMediaArr(videoString, imageString){
             thumb: "assets/images/video-placeholder.png"
         };
 
-        // mediaString = videoString.concat("," + imageString);
-        // videoObj.video.source.src.Value = GetVideoURL(videoString);
-        // videoObj.thumb = GetVideoURL(videoString);
-        // console.log('video: ' + GetVideoURL(videoString));
-
         // add video element at the beginning of mediaArr
         mediaArr.unshift(obj);
     }
     return mediaArr;
-
-
-    
-    // console.log('mediaString:' + mediaString);
-    
-    // mediaArr = mediaString.split(',');
-
-    // mediaArr = mediaArr.map(d=> {
-    //     let obj = {
-    //         src: GetImageURL(d),
-    //         thumb: GetImageURL(d)
-    //     }
-    //     return obj;
-    // })
-    // return mediaArr;
 }
 
-export function CustomButton(url, urlLabel){
-    if (url==="") {
-        return '';
-    }else {
-        return `
-        <a href="${url}" target="_blank">
-            <button class="button" style="margin-top: 30px; margin-bottom: 50px;">${urlLabel}</button>
-        </a>
-
-        `;
-    }
-}
-
-export function FilesButton(files){
-    if (files==="") {
-        return '';
-    }else {
-        return `
-        <a href="${files}" target="_blank">
-            <button class="button" style="margin-top: 30px; margin-bottom: 50px;">Download Files</button>
-        </a>
-
-        `;
-    }
-}
-
-export function CodeSnippet(code){
-    if (code==="") {
-        return '';
-    }else {
-        return `
-        <h4>Code</h4>
-            <pre><code class="python">${code}</code></pre>
-        `;
-    }
-}
-
-// custom gallery
-export function Gallery(video, images){
-    return `
-    <div class="gallery">
-        <div class="maxi">
-        ${ShowMaxi(video, images)}
-        </div>
-        <div class="mini">
-        ${GetEmbedVideo(video)}
-        ${ImageItems(images)}
-        </div>
-    </div>
-    `
-}
-
+// for custom gallery - unused
 export function ShowMaxi(video, images){
     if (video==="") {
         return `<img id="current" src="${(GetTeaserURL(images))}"></img>`;
@@ -167,6 +214,7 @@ export function ShowMaxi(video, images){
     }
 }
 
+// for custom gallery - unused
 export function SetGallery(){
     const current = document.querySelector('#current');
     const mini = document.querySelectorAll('.mini img, .mini iframe');
@@ -191,53 +239,3 @@ export function SetGallery(){
         e.target.style.opacity = opacity;
     }
 }
-
-// lightgallery.js
-export function Lightgallery() {
-    return `
-        <div id="inline-gallery-container" class="inline-gallery-container"></div>
-    `
-}
-
-export function SetLightgallery(mediaArr) {
-    const $lgContainer = document.getElementById("inline-gallery-container");
-    const inlineGallery = lightGallery($lgContainer, {
-        container: $lgContainer,
-        dynamic: true,
-        // Turn off hash plugin in case if you are using it
-        // as we don't want to change the url on slide change
-        hash: false,
-        // Do not allow users to close the gallery
-        closable: false,
-        // Add maximize icon to enlarge the gallery
-        showMaximizeIcon: false,
-        // Append caption inside the slide item
-        // to apply some animation for the captions (Optional)
-        // appendSubHtmlTo: ".lg-item",
-        // Delay slide transition to complete captions animations
-        // before navigating to different slides (Optional)
-        // You can find caption animation demo on the captions demo page
-        slideDelay: 200,
-        plugins: [lgZoom, lgThumbnail, lgVideo],
-        dynamicEl: mediaArr,
-        iframe: true,
-        // Completely optional
-        thumbWidth: 60,
-        thumbHeight: "60px",
-        // thumbMargin: 4
-    });
-
-    setTimeout(() => {
-        inlineGallery.openGallery();
-    }, 200);
-}
-
-export function ImageItems(images){
-    let arr = GetImageArr(images);
-
-    return arr.map(d=>`
-        <img src="${GetImageURL(d)}">
-        `).join('');
-}
-
-
