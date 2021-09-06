@@ -52,7 +52,7 @@ export function ProjectItems(about, projects){
             <div class="info">
                 <div class="project-overview">
                     <div class="project-theme">
-                        ${d.hackathon}
+                        ${d.category}
                     </div>
                     <div class="project-title">
                         <a href="?project=${d.title}"><strong>${d.title}</strong></a>
