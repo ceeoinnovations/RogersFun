@@ -81,7 +81,7 @@ export function handleProjectFilter(data){
             checked = checked.replace(/ /g, "").toLowerCase();
             let filteredProjects = data.projects.filter(d=>{
                 // return d.id.some(id=>checked === checked.toLowerCase());
-                d.id = d.hackathon.replace(/ /g, "").toLowerCase();
+                d.id = d.theme.replace(/ /g, "").toLowerCase();
                 return d.id === checked;
             });
             let checkedTheme = data.themes.filter(d=>{
