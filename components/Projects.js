@@ -94,7 +94,7 @@ export function handleProjectFilter(data){
     }));
 }
 
-// show theme information
+// show category information
 export function UpdateThemeInfo(projects, category){
     let projectNumber = projects.length;
     return `
@@ -102,7 +102,7 @@ export function UpdateThemeInfo(projects, category){
         <h1 class="title">${category[0].name} </h1>
         <p>${category[0].description}</p>
         <a href="${category[0].buttonlink}" target="_blank">
-            <button class="button" style="margin-top: 30px; margin-bottom: 50px;">${theme[0].buttonlabel}</button>
+            <button class="button" style="margin-top: 30px; margin-bottom: 50px;">${category[0].buttonlabel}</button>
         </a>
         ${(ResourcesButton(category[0].resources))}
         </div>
