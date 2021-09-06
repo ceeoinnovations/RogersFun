@@ -106,7 +106,7 @@ nav a:hover{
 
 .intro{
     z-index: 1000;
-    background-color:rgb(17, 17, 24);
+    background-color: #3F7BE0;
     border-bottom: 1px solid rgba(49, 56, 150, 0.1);
     color: #fff;
     display: flex;
