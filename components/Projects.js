@@ -1,10 +1,10 @@
 import GetImageURL, {GetTeaserURL} from './Images.js';
 
 // return HTML for project section
-export default function Projects(projects, category, about){
+export default function Projects(projects, theme, about){
     return `
     <section id="content">
-        <div id="theme" class="text-wrapper">
+        <div id="theme" class="text-wrapper theme-info">
         ${DefaultInfo(projects)}
         </div>    
 
@@ -52,7 +52,7 @@ export function ProjectItems(about, projects){
             <div class="info">
                 <div class="project-overview">
                     <div class="project-theme">
-                        ${d.category}
+                        ${d.theme}
                     </div>
                     <div class="project-title">
                         <a href="?project=${d.title}"><strong>${d.title}</strong></a>
@@ -94,17 +94,17 @@ export function handleProjectFilter(data){
     }));
 }
 
-// show category information
-export function UpdateThemeInfo(projects, category){
+// show theme information
+export function UpdateThemeInfo(projects, theme){
     let projectNumber = projects.length;
     return `
         <div class="theme-container">
-        <h1 class="title">${category[0].name} </h1>
-        <p>${category[0].description}</p>
-        <a href="${category[0].buttonlink}" target="_blank">
-            <button class="button" style="margin-top: 30px; margin-bottom: 50px;">${category[0].buttonlabel}</button>
+        <h1 class="title">${theme[0].name} </h1>
+        <p>${theme[0].description}</p>
+        <a href="${theme[0].buttonlink}" target="_blank">
+            <button class="button" style="margin-top: 30px; margin-bottom: 50px;">${theme[0].buttonlabel}</button>
         </a>
-        ${(ResourcesButton(category[0].resources))}
+        ${(ResourcesButton(theme[0].resources))}
         </div>
         
         <p class="project-number">${projectNumber} submitted</p>
