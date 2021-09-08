@@ -59,15 +59,15 @@ footer{
 }
 
 pre {
-    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: pre;       /* Since CSS 2.1 */
     display: flex-root;
     clear: both;
-    width: 100%;
+    width: 480px;
     background: #eee;
 }
 
 code {
-    border-radius: 15px;
+    /* border-radius: 15px; */
 }
 
 /* || header and main navigation */
@@ -873,13 +873,7 @@ background-color: #19b674;
 @media only screen and (max-width: 768px) {
     .footer-content {width: 80%;}
     .project-img-holder:nth-child(1n) {margin-right: 0;}
-}
-
-@media screen and (max-width: 700px){
-    .box{
-        width: 70%;
-    }
-    .modal{
-        width: 70%;
-    }
+    pre {width: 80vw}
+    .box{width: 70%;}
+    .modal{width: 70%;}
 }

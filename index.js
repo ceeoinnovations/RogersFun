@@ -20,12 +20,18 @@ Promise.all([
         let project = data.projects.find(d=>d.title===params.get('project'));
         Navbar('project')
         ProjectPage(project, about);
-        hljs.highlightAll();
         lightGallery(document.getElementById('lightgallery'), {
             plugins: [lgZoom, lgThumbnail, lgVideo],
             speed: 500,
             thumbnail: true
         });
+        hljs.highlightAll();
+        // apply HighlightJS
+        let pres = document.querySelectorAll("pre>code");
+        for (let i = 0; i < pres.length; i++) {
+        hljs.highlightBlock(pres[i]);
+        }
+        window.highlightJsBadge();
     } 
 });
 
