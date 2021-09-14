@@ -27,11 +27,11 @@ Promise.all([
         });
         hljs.highlightAll();
         // apply HighlightJS
-        // let pres = document.querySelectorAll("pre>code");
-        // for (let i = 0; i < pres.length; i++) {
-        // hljs.highlightBlock(pres[i]);
-        // }
-        // window.highlightJsBadge();
+        let pres = document.querySelectorAll("pre>code");
+        for (let i = 0; i < pres.length; i++) {
+        hljs.highlightBlock(pres[i]);
+        }
+        window.highlightJsBadge();
         setTimeout(function () {
             var pres = document.querySelectorAll("pre>code");
             for (var i = 0; i < pres.length; i++) {
