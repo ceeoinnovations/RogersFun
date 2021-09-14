@@ -25,13 +25,9 @@ Promise.all([
             speed: 500,
             thumbnail: true
         });
-        hljs.highlightAll();
+        
         // apply HighlightJS
-        let pres = document.querySelectorAll("pre>code");
-        for (let i = 0; i < pres.length; i++) {
-        hljs.highlightBlock(pres[i]);
-        }
-        window.highlightJsBadge();
+        // hljs.highlightAll();
         setTimeout(function () {
             var pres = document.querySelectorAll("pre>code");
             for (var i = 0; i < pres.length; i++) {
