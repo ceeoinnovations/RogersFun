@@ -1,13 +1,12 @@
 import GetImageURL, {GetTeaserURL} from './Images.js';
 
 // return HTML for project section
-export default function Projects(projects, theme, about){
+export default function Projects(projects, themes, about){
     return `
     <section id="content">
         <div id="theme" class="text-wrapper theme-info">
         ${DefaultInfo(projects)}
         </div>    
-
         <div id="projects" class="wrapper">
             <div class="project-list">
                 ${SubmitButton(about)}
@@ -29,16 +28,16 @@ export function DefaultInfo(projects){
 // add a submit button
 export function SubmitButton(about){
     return `
-        <div class="project-box">
+        <a href="${about[0].form}" target="_blank" class="project-box">
             <img src="assets/images/add-placeholder.png" div class="teaser">
             <div class="info">
                 <div class="project-overview">
                     <div class="project-title">
-                        <a href="${about[0].form}" target="_blank"><strong>Submit → </strong></a>
+                        <strong>Submit → </strong>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     `
 }
 
@@ -46,8 +45,7 @@ export function SubmitButton(about){
 export function ProjectItems(about, projects){
     return projects.map(d=>`
         
-        <div class="project-box">
-            
+        <a href="?project=${d.title}" class="project-box">
             <img src="${(GetTeaserURL(d.images))}" div class="teaser">
             <div class="info">
                 <div class="project-overview">
@@ -55,7 +53,7 @@ export function ProjectItems(about, projects){
                         ${d.theme}
                     </div>
                     <div class="project-title">
-                        <a href="?project=${d.title}"><strong>${d.title}</strong></a>
+                        <strong>${d.title}</strong>
                     </div>
                     <div class="project-subtitle">
                         ${d.subtitle}
@@ -65,7 +63,7 @@ export function ProjectItems(about, projects){
                     </div>
                 </div>    
             </div>
-        </div> 
+        </a> 
     `).join('');
 }
 
