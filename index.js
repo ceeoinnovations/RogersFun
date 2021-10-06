@@ -19,7 +19,7 @@ Promise.all([
     }else{
         let project = data.projects.find(d=>d.title===params.get('project'));
         Navbar('project')
-        ProjectPage(project, about);
+        ProjectPage(project, data.projects);
         lightGallery(document.getElementById('lightgallery'), {
             plugins: [lgZoom, lgThumbnail, lgVideo],
             speed: 500,

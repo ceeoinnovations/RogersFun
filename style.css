@@ -48,6 +48,7 @@ a{
 a:hover{
     text-decoration: none;
     color: #20d489; 
+    cursor: pointer;
 }
 
 footer{
@@ -92,6 +93,7 @@ nav ul{
 
 nav a:hover{
     color: #20d489; 
+    cursor: pointer;
 }
 
 /* || sitewide */
@@ -224,8 +226,9 @@ nav a:hover{
 }
   
 .button:hover {
-background-image: none;
-background-color: #19b674;
+    background-image: none;
+    background-color: #19b674;
+    cursor: pointer;
 }
 
 .tag{
@@ -248,6 +251,11 @@ background-color: #19b674;
 
 .project-number{
     color: #a7a6a6;
+}
+
+.more-projects{
+    font-family: 'DM Sans', 'Helvetica', sans-serif;
+    text-align: center;
 }
 
 .project-items{
@@ -316,6 +324,7 @@ background-color: #19b674;
 
 .project-title a:hover{
     color: #20d489;
+    cursor: pointer;
 }
 
 .project-info{
@@ -329,6 +338,16 @@ background-color: #19b674;
     text-align: left;
     margin-top: 10px
 }
+
+.project-intro{
+    /* border-bottom: 1px solid rgba(30, 33, 83, 0.1); */
+    padding-bottom: 50px;
+}
+    	
+.related-projects{
+    background:rgb(241, 241, 241);
+    padding-bottom: 50px;
+}		
 
 #people {
     background-color: #f8f9f9;

@@ -1,19 +1,31 @@
 import GetImageURL, {GetImageArr, GetEmbedVideo, GetVideoURL, GetTeaserURL} from './Images.js';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js';
+import Projects, {ProjectItems} from './Projects.js';
 const opacity = 0.6;
 
 // create project detail page
-export default function ProjectPage(project, about){
+export default function ProjectPage(project, projects){
+    // get projects that belong to the same theme of the current project
+    let filter = project.theme;
+    let filterId = filter.replace(/ /g, "").toLowerCase();
+    let filteredProjects = projects.filter(d=>{
+        d.id = d.theme.replace(/ /g, "").toLowerCase();
+        return d.id === filterId;
+    });
+    filteredProjects = filteredProjects.filter(d=>{
+        return d.title !== project.title; // remove the current project
+    }); 
     document.querySelector('.container').innerHTML = `
         ${Navbar('project')}
-        ${ProjectDetail(project, about)}
+        ${ProjectDetail(project)}
+        ${RelatedProjects(filter, filteredProjects)}
     `
     SetLightgallery(GetMediaArr(project.video, project.images));
 }
 
 // return HTML for project content section
-export function ProjectDetail(d, about){
+export function ProjectDetail(d){
     return `
     <section id="content" class="project-intro">
         <div class="content-wrapper">
@@ -43,8 +55,6 @@ export function ProjectDetail(d, about){
     </section>
     `
 }
-
-
 
 // return HTML to add custom button
 export function CustomButton(url, urlLabel){
@@ -237,5 +247,24 @@ export function SetGallery(){
         
         // Change the opacity to opacity var
         e.target.style.opacity = opacity;
+    }
+}
+
+// display related projects
+export function RelatedProjects(filter, projects){
+    console.log(projects[0]);
+    if (projects[0] == undefined){
+        return "";
+    }else{
+    return `
+    <section id="related-projects" class="related-projects">
+        <div class="content-wrapper">
+        <p class="more-projects">You Might Also Like</p>
+            <div class="project-list">
+                ${ProjectItems(projects)}
+            </div>
+        </div>
+    </section>
+    `
     }
 }

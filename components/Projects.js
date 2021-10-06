@@ -10,7 +10,7 @@ export default function Projects(projects, themes, about){
         <div id="projects" class="wrapper">
             <div class="project-list">
                 ${SubmitButton(about)}
-                ${ProjectItems(about, projects)}
+                ${ProjectItems(projects)}
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@ export function SubmitButton(about){
 }
 
 // return HTML for project items
-export function ProjectItems(about, projects){
+export function ProjectItems(projects){
     return projects.map(d=>`
         
         <a href="?project=${d.title}" class="project-box">
@@ -87,7 +87,7 @@ export function handleProjectFilter(data){
                 return d.id === checked;
             });
             document.querySelector('.theme-info').innerHTML = UpdateThemeInfo(filteredProjects, checkedTheme);
-            document.querySelector('.project-list').innerHTML = SubmitButton(data.about) + ProjectItems(data.about, filteredProjects);
+            document.querySelector('.project-list').innerHTML = SubmitButton(data.about) + ProjectItems(filteredProjects);
         }
     }));
 }
