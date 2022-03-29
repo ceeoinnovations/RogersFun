@@ -89,7 +89,7 @@ export function CodeSnippet(code){
     }else {
         return `
         <h4>Code</h4>
-            <pre><code class="arduino">${code}</code></pre>
+            <pre><code class="code">${code}</code></pre>
         `;
     }
 }
